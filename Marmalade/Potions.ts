@@ -13,15 +13,10 @@ enum Effect {
     TurnedInvisible,
     StrangelySatisfied
 }
-interface SimResult {
-    winner: SimEntity;
-    loser: SimEntity;
-    description: string;
-};
 interface SimEntity {
     summonMessage: string;
     name: string;
-    primaryAttack(self: SimEntity, other: SimEntity): SimResult;
+    primaryAttack(other: SimEntity): string;
 };
 interface Simulation {
     entities: SimEntity[];
@@ -29,83 +24,40 @@ interface Simulation {
 var SummonIngredients: {
     [name: string]: SimEntity
 } = {
-    "Wing of Penguin": {
-        summonMessage: "You have summoned a clone of yourself!",
-        name: "Your clone",
-        primaryAttack: (self: SimEntity, other: SimEntity) => {
-            if (other.name == "Your clone") return { winner: self, loser: other, description: "Your clone hits another clone over the head with a baseball bat." };
-            if (other.name == "The alien spaceship") return { winner: self, loser: other, description: "Your clone breaks the alien's window, enters the ship, and sets their reactor to self-destruct." };
-            if (other.name == "The giant robot") return { winner: other, loser: self, description: "The giant robot stomps your clone into the dirt." };
-            if (other.name == "The demon knight") return { winner: other, loser: self, description: "The demon knight grabs your clone and sends him screaming down to Hell." };
-            if (other.name == "The raven") return { winner: null, loser: null, description: "Your clone stares at the raven for a while." };
-            if (other.name == "The news crew") return { winner: other, loser: self, description: "The news crew does a detailed documentary about your private life, causing your clone to flee." };
-            return null; 
-        }
+     "Wing of Penguin": {
+         summonMessage: "A wizard pops out of the nearby air.",
+         name: "A wizard",
+         primaryAttack: (other: SimEntity) => {
+             return "fries the " + other.name + " with lightning.";
+         },
     },
     "Tail of Puppy": {
-        summonMessage: "A giant demon knight teleports in from the depths of Hell.",
+        summonMessage: "A giant demon knight gates in from the depths of Hell.",
         name: "The demon knight",
-        primaryAttack: (self: SimEntity, other: SimEntity) => {
-            if (other.name == "Your clone") return { winner: self, loser: other, description: "Your clone hits another clone over the head with a baseball bat." };
-            if (other.name == "The alien spaceship") return { winner: self, loser: other, description: "Your clone breaks the alien's window, enters the ship, and sets their reactor to self-destruct." };
-            if (other.name == "The giant robot") return { winner: other, loser: self, description: "The giant robot stomps your clone into the dirt." };
-            if (other.name == "The demon knight") return { winner: other, loser: self, description: "The demon knight grabs your clone and sends him screaming down to Hell." };
-            if (other.name == "The raven") return { winner: null, loser: null, description: "Your clone stares at the raven for a while." };
-            if (other.name == "The news crew") return { winner: other, loser: self, description: "The news crew does a detailed documentary about your private life, causing your clone to flee." };
-            return null;
-        }
+        primaryAttack: (other: SimEntity) => {
+            return "sends the " + other.name + " right back to Hell.";
+        },
     },
     "Hair of Ape": {
         summonMessage: "An alien spaceship lands right next to you.",
         name: "The alien spaceship",
-        primaryAttack: (self: SimEntity, other: SimEntity) => {
-            if (other.name == "Your clone") return { winner: self, loser: other, description: "Your clone hits another clone over the head with a baseball bat." };
-            if (other.name == "The alien spaceship") return { winner: self, loser: other, description: "Your clone breaks the alien's window, enters the ship, and sets their reactor to self-destruct." };
-            if (other.name == "The giant robot") return { winner: other, loser: self, description: "The giant robot stomps your clone into the dirt." };
-            if (other.name == "The demon knight") return { winner: other, loser: self, description: "The demon knight grabs your clone and sends him screaming down to Hell." };
-            if (other.name == "The raven") return { winner: null, loser: null, description: "Your clone stares at the raven for a while." };
-            if (other.name == "The news crew") return { winner: other, loser: self, description: "The news crew does a detailed documentary about your private life, causing your clone to flee." };
-            return null;
-        }
+        primaryAttack: (other: SimEntity) => {
+            return "fires phasers at the " + other.name + ".";
+        },
     },
     "Eye of Newt": {
-        summonMessage: "A giant robot arises from a hidden bunker.",
+        summonMessage: "A giant robot is dropped in from a helicopter.",
         name: "The giant robot",
-        primaryAttack: (self: SimEntity, other: SimEntity) => {
-            if (other.name == "Your clone") return { winner: self, loser: other, description: "Your clone hits another clone over the head with a baseball bat." };
-            if (other.name == "The alien spaceship") return { winner: self, loser: other, description: "Your clone breaks the alien's window, enters the ship, and sets their reactor to self-destruct." };
-            if (other.name == "The giant robot") return { winner: other, loser: self, description: "The giant robot stomps your clone into the dirt." };
-            if (other.name == "The demon knight") return { winner: other, loser: self, description: "The demon knight grabs your clone and sends him screaming down to Hell." };
-            if (other.name == "The raven") return { winner: null, loser: null, description: "Your clone stares at the raven for a while." };
-            if (other.name == "The news crew") return { winner: other, loser: self, description: "The news crew does a detailed documentary about your private life, causing your clone to flee." };
-            return null;
-        }
-    },
-    "Nail of Human": {
-        summonMessage: "A raven lands on a nearby tree and caws.",
-        name: "The raven",
-        primaryAttack: (self: SimEntity, other: SimEntity) => {
-            if (other.name == "Your clone") return { winner: self, loser: other, description: "Your clone hits another clone over the head with a baseball bat." };
-            if (other.name == "The alien spaceship") return { winner: self, loser: other, description: "Your clone breaks the alien's window, enters the ship, and sets their reactor to self-destruct." };
-            if (other.name == "The giant robot") return { winner: other, loser: self, description: "The giant robot stomps your clone into the dirt." };
-            if (other.name == "The demon knight") return { winner: other, loser: self, description: "The demon knight grabs your clone and sends him screaming down to Hell." };
-            if (other.name == "The raven") return { winner: null, loser: null, description: "Your clone stares at the raven for a while." };
-            if (other.name == "The news crew") return { winner: other, loser: self, description: "The news crew does a detailed documentary about your private life, causing your clone to flee." };
-            return null;
-        }
+        primaryAttack: (other: SimEntity) => {
+            return "stomps the " + other.name + " into the dirt.";
+        },
     },
     "Piss of Cat": {
-        summonMessage: "A news crew drives up to report on the goings-on.",
-        name: "The news crew",
-        primaryAttack: (self: SimEntity, other: SimEntity) => {
-            if (other.name == "Your clone") return { winner: self, loser: other, description: "Your clone hits another clone over the head with a baseball bat." };
-            if (other.name == "The alien spaceship") return { winner: self, loser: other, description: "Your clone breaks the alien's window, enters the ship, and sets their reactor to self-destruct." };
-            if (other.name == "The giant robot") return { winner: other, loser: self, description: "The giant robot stomps your clone into the dirt." };
-            if (other.name == "The demon knight") return { winner: other, loser: self, description: "The demon knight grabs your clone and sends him screaming down to Hell." };
-            if (other.name == "The raven") return { winner: null, loser: null, description: "Your clone stares at the raven for a while." };
-            if (other.name == "The news crew") return { winner: other, loser: self, description: "The news crew does a detailed documentary about your private life, causing your clone to flee." };
-            return null;
-        }
+        summonMessage: "A cloud of gray goo bubbles up from the ground.",
+        name: "The cloud of goo",
+        primaryAttack: (other: SimEntity) => {
+            return "digests the " + other.name + " and bubbles malevolently.";
+        },
     }
 };
 var SingleTargetEffectIngredients: {
@@ -133,110 +85,75 @@ var SingleTargetEffectIngredients: {
     }
 };
 var DoubleTargetEffectIngredients: {
-};
-interface TargetIngredient {
-    name: string;
-    targetIndex: number;
-};
-interface SingleTargetEffectIngredient {
-    effect: Effect;
-};
-
-interface Ingredient {
-    name: string;
-    targetIndex: number;
-    effect: Effect;
-};
-
-var Ingredients: Ingredient[] = [
-    {
-        name: "Beer",
-        targetIndex: 1,
-        effect: Effect.Explode
+    [name: string]: { (sim: Simulation, target1: number, target2: number): string }
+} = {
+    "Stinging nettle": (sim: Simulation, target1: number, target2: number) => {
+        var dead = sim.entities.splice(target2, 1)[0];
+        return sim.entities[target1].name + " " + sim.entities[target1].primaryAttack(dead);
     },
-    {
-        name: "Eye of Newt",
-        targetIndex: 2,
-        effect: Effect.StrangelySatisfied
+    "Heather": (sim: Simulation, target1: number, target2: number) => {
+        return sim.entities[target1].name + " gazes longingly at " + sim.entities[target2].name;
     },
-    {
-        name: "Water",
-        targetIndex: 3,
-        effect: Effect.TeleportedToMars
-    },
-    {
-        name: "Dust",
-        targetIndex: 4,
-        effect: Effect.TurnedIntoNewt
-    },
-    {
-        name: "Hemlock",
-        targetIndex: 5,
-        effect: Effect.TurnedInvisible
-    } 
-];
+    "Bracken": (sim: Simulation, target1: number, target2: number) => {
+        return sim.entities[target1].name + " makes a rude gesture at " + sim.entities[target2].name;
+    }
+};
+var TargetIngredients: {
+    [name: string]: number
+} = {
+    "Thorn of Rose": 0,
+    "Four-leaf Clover": 1,
+    "Briarthorn": 2,
+    "Stranglekelp": 3,
+    "Fadeleaf": 4,
+    "Liferoot": 5,
+    "Firebloom": 6
+};
 // SummonIngredient 
 // SingleTargetEffectIngredient TargetIngredient
 // DoubleTargetEffectIngredient TargetIngredient EffectIngredient
-var Entities: SimEntity[] = [
-    { name: "you", renderEffect: (e: Effect) => { return ""; } },
-    { name: "your mother", renderEffect: (e: Effect) => { return ""; } },
-    { name: "your girlfriend", renderEffect: (e: Effect) => { return ""; } },
-    { name: "your dog", renderEffect: (e: Effect) => { return ""; } },
-    { name: "your enemy", renderEffect: (e: Effect) => { return ""; } }
-];
 module Potions {
     function calculatePotion(ingredients: string[]): string {
-        var currentPotion = { effect: Effect.Explode, target: Target.You };
         try {
             var output = "";
-
+            var simulation = {
+                entities: [
+                    {
+                        summonMessage: "",
+                        primaryAttack: (other: SimEntity) => {
+                            return "drink a potion that unsummons the " + other.name;
+                        },
+                        name: "You"
+                    }
+                ]
+            };
+            for (var i = 0; i < ingredients.length; ++i) {
+                var summon = SummonIngredients[ingredients[i]];
+                if (summon) {
+                    simulation.entities.push(summon);
+                    output += summon.summonMessage + "\n";
+                    continue;
+                }
+                var single = SingleTargetEffectIngredients[ingredients[i]];
+                if (single) {
+                    var target = TargetIngredients[ingredients[++i]];
+                    if (!target) return "You exploded.";
+                    if (target >= simulation.entities.length)
+                        target = target % simulation.entities.length;
+                    output += single(simulation, target) + "\n";
+                    continue;
+                }
+                var double = DoubleTargetEffectIngredients[ingredients[i]];
+                if (!double) return "You exploded.";
+                var origin = TargetIngredients[ingredients[++i]];
+                var dest = TargetIngredients[ingredients[++i]];
+                output += double(simulation, origin, dest) + "\n";
+            }
+            return output;
         } catch (e) {
             return "You exploded.";
         }
         return output;
-    }
-    function printPotion(potion: Potion) {
-        var output = "";
-        switch (potion.target) {
-            case Target.You:
-                output += "You were";
-                break;
-            case Target.YourDog:
-                output += "Your dog was";
-                break;
-            case Target.YourEnemy:
-                output += "Your most hated enemy was";
-                break;
-            case Target.YourGirlfriend:
-                output += "Your girlfriend was";
-                break;
-            case Target.YourMother:
-                output += "Your mother was";
-                break;
-        }
-        output += " ";
-        switch (potion.effect) {
-            case Effect.Explode:
-                output += "exploded.";
-                break;
-            case Effect.TurnedIntoNewt:
-                output += "turned into a newt.";
-                break;
-            case Effect.TeleportedToMars:
-                output += "teleported to Mars.";
-                break;
-            case Effect.TurnedInvisible:
-                output += "turned invisible.";
-                break;
-            case Effect.StrangelySatisfied:
-                output += "strangely satisfied.";
-                break;
-        }
-        return output;
-    }
-    function printPotionToLog(potion: Potion) {
-        console.log(printPotion(potion));
     }
     var ingredients: string[] = [];
     export function onStir() {
@@ -246,7 +163,7 @@ module Potions {
         ingredients.push(val);
     }
     export function onComplete() {
-        var result = printPotion(calculatePotion(ingredients));
+        var result = calculatePotion(ingredients);
         ingredients = [];
         return result;
     }
