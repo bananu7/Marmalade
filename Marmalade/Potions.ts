@@ -150,17 +150,35 @@ module Potions {
     }
     var ingredients: string[] = [];
     export function onStir() {
-        addIngredient(jQuery("#inputInput").val());
         jQuery("#inputInput").val("");
     }
-    function addIngredient(val: string) {
+    export function addIngredient(val: string) {
         ingredients.push(val);
     }
     export function onComplete() {
-        printPotionToLog(calculatePotion(ingredients));
+        var result = printPotion(calculatePotion(ingredients));
         ingredients = [];
+        return result;
     }
 }
+
 jQuery(() => {
-    jQuery("#stirButton").click(() => Potions.onStir());
+    jQuery("#stirButton").click(() => Potions.onStir());    
+
+    $("#inputInput").keypress(e => {
+        //console.log(e.which);
+        if (e.which == 13) {
+            Potions.addIngredient($("#inputInput").val());
+            console.log($("#inputInput").val());
+            $("#inputInput").val("");
+            return false;
+        }
+    });
+
+    $("#endPotionButton").click(() => {
+        var result = Potions.onComplete();
+        $("#popup")
+            .show()
+            .html(result);
+    });
 });
