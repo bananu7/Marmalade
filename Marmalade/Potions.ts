@@ -167,6 +167,18 @@ module Potions {
         ingredients = [];
         return result;
     }
+    export function getIngredients(): string[]{
+        var result: string[] = [];
+        for (var key in DoubleTargetEffectIngredients)
+            result.push(key);
+        for (var key in SingleTargetEffectIngredients)
+            result.push(key);
+        for (var key in SummonIngredients)
+            result.push(key);
+        for (var key in TargetIngredients)
+            result.push(key);
+        return result;
+    }
 }
 
 jQuery(() => {
