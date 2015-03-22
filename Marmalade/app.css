@@ -9,6 +9,11 @@ span {
     font-style: italic;
 }
 
+#content {
+    margin:auto;
+    width: 70%;
+}
+
 #ingredients {
     background-color: #e8cf71;
     width: 20%;
@@ -29,9 +34,15 @@ span {
     border-radius: 10px;
 }
 
+    #inputBox img {
+        height:100px;
+        box-sizing: border-box;
+        float:right;
+    }
+
 #inputInput {
     box-sizing: border-box;
-    width: 100%;
+    width: 90%;
     height: 100%;
     font-family: Consolas, 'Lucida Console', 'DejaVu Sans Mono', monospace;
     font-size: 3em;
@@ -49,6 +60,7 @@ span {
 #howToPlay {
     float:right;
     padding: 20px;
+    padding-top: 0px;
     box-sizing: border-box;
     background-color: #90cc20;
 }
