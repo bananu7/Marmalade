@@ -149,11 +149,14 @@ var Potions;
     }
     var ingredients = [];
     function onStir() {
+        var ingredient = jQuery("#inputInput").val();
+        Potions.addIngredient(ingredient);
         jQuery("#inputInput").val("");
     }
     Potions.onStir = onStir;
     function addIngredient(val) {
         ingredients.push(val);
+        $("#inBowl").append($("<li>" + val + "</li>"));
     }
     Potions.addIngredient = addIngredient;
     function onComplete() {
@@ -188,7 +191,6 @@ jQuery(function () {
         if (e.which == 13) {
             var ingredient = $("#inputInput").val();
             Potions.addIngredient(ingredient);
-            $("#inBowl").append($("<li>" + ingredient + "</li>"));
             $("#inputInput").val("");
             return false;
         }
