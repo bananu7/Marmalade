@@ -1,6 +1,8 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
     padding: 10px;
+    background-color: #333;
+    color: white;
 }
 
 span {
@@ -13,6 +15,7 @@ span {
     font-family: 'Comic Sans MS', cursive;
     float: left;
     min-height: 500px;
+    color: #3e2914;
 }
 
 #inputBox {
@@ -23,6 +26,7 @@ span {
     padding: 25px;
     box-sizing:border-box;
     margin-top: 10px;
+    border-radius: 10px;
 }
 
 #inputInput {
@@ -34,4 +38,17 @@ span {
 
     background-color: #909090;
     border: 0px;
+
+    border-radius: 10px;
+}
+
+#bowl {
+    float:left;
+}
+
+#howToPlay {
+    float:right;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #90cc20;
 }

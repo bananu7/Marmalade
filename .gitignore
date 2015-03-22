@@ -158,4 +158,5 @@ $RECYCLE.BIN/
 
 
 node_modules
-/Harvest-ts/*.js
+/Marmalade/*.js
+*.js.map
