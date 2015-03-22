@@ -23,6 +23,11 @@ span {
     color: #3e2914;
 }
 
+#timer {
+    float: left;
+    margin: auto:
+}
+
 #inputBox {
     float: right;
     background-color: #808080;
@@ -38,6 +43,7 @@ span {
         height:100px;
         box-sizing: border-box;
         float:right;
+        cursor: pointer;
     }
 
 #inputInput {
@@ -51,6 +57,7 @@ span {
     border: 0px;
 
     border-radius: 10px;
+    color:white;
 }
 
 #bowl {
