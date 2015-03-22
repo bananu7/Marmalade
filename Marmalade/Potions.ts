@@ -106,4 +106,61 @@ module Potions {
         }
         return currentPotion;
     }
+    function printPotion(potion: Potion) {
+        var output = "";
+        switch (potion.target) {
+            case Target.You:
+                output += "You were";
+                break;
+            case Target.YourDog:
+                output += "Your dog was";
+                break;
+            case Target.YourEnemy:
+                output += "Your most hated enemy was";
+                break;
+            case Target.YourGirlfriend:
+                output += "Your girlfriend was";
+                break;
+            case Target.YourMother:
+                output += "Your mother was";
+                break;
+        }
+        output += " ";
+        switch (potion.effect) {
+            case Effect.Explode:
+                output += "exploded.";
+                break;
+            case Effect.TurnedIntoNewt:
+                output += "turned into a newt.";
+                break;
+            case Effect.TeleportedToMars:
+                output += "teleported to Mars.";
+                break;
+            case Effect.TurnedInvisible:
+                output += "turned invisible.";
+                break;
+            case Effect.StrangelySatisfied:
+                output += "strangely satisfied.";
+                break;
+        }
+        return output;
+    }
+    function printPotionToLog(potion: Potion) {
+        console.log(printPotion(potion));
+    }
+    var ingredients: string[] = [];
+    export function onStir() {
+        addIngredient(jQuery("#inputInput").val());
+        jQuery("#inputInput").val("");
+    }
+    function addIngredient(val: string) {
+        ingredients.push(val);
+    }
+    export function onComplete() {
+        printPotionToLog(calculatePotion(ingredients));
+        ingredients = [];
+    }
 }
+jQuery(() => {
+    jQuery("#stirButton").click(() => Potions.onStir());
+});
