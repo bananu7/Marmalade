@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Potion Master</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <script src="app.js"></script>
+    <script src="Potions.js"></script>
+</head>
+<body>
+    <div id="content">
+        <h1>Potion Master</h1>
+        <div id="ingredients">
+            <ul id="availableIngredients">
+            </ul>
+            <hr />
+            <h3>Currently in bowl:</h3>
+            <ul id="inBowl"></ul>
+        </div>
+
+        <div id="bowl">
+            <img src="img/bowl.png" />
+        </div>
+
+        <div id="howToPlay">
+            <h1>How to play</h1>
+            <p>Your goal is to brew potions and shit.</p>
+            <p>Have fun</p>
+
+            <input type="button" id="fullscreenButton" value="Go Fullscreen" />
+            <br />
+            <input type="button" id="endPotionButton" value="Done!" />
+        </div>
+
+
+        <div id="inputBox">
+            <input type="text" id="inputInput"/>
+            <img src="img/spoon.png" id="stirButton" />
+        </div>
+
+        <div id="popup">
+        </div>
+
+        <div id="timer">00:00:00</div>
+    </div>
+</body>
+</html>
