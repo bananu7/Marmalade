@@ -13,4 +13,6 @@ function launchFullScreen(element) {
 
 window.onload = () => {
     document.getElementById("fullscreenButton").addEventListener('click',() => launchFullScreen(document.documentElement));
+
+    $("#popup").click(() => $("#popup").hide());
 };
