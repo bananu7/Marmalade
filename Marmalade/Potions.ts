@@ -184,6 +184,11 @@ module Potions {
 jQuery(() => {
     jQuery("#stirButton").click(() => Potions.onStir());    
 
+    for (var key in Potions.getIngredients()) {
+        jQuery("#availableIngredients").append(jQuery("<li>", {
+            text: Potions.getIngredients()[key]
+        }));
+    }
     $("#inputInput").keypress(e => {
         //console.log(e.which);
         if (e.which == 13) {
