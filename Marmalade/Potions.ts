@@ -157,10 +157,13 @@ module Potions {
     }
     var ingredients: string[] = [];
     export function onStir() {
+        var ingredient = jQuery("#inputInput").val();
+        Potions.addIngredient(ingredient);
         jQuery("#inputInput").val("");
     }
     export function addIngredient(val: string) {
         ingredients.push(val);
+        $("#inBowl").append($("<li>" + val + "</li>"));
     }
     export function onComplete() {
         var result = calculatePotion(ingredients);
@@ -195,7 +198,6 @@ jQuery(() => {
             var ingredient = $("#inputInput").val();
 
             Potions.addIngredient(ingredient);
-            $("#inBowl").append($("<li>" + ingredient + "</li>"));
             $("#inputInput").val("");
             return false;
         }
