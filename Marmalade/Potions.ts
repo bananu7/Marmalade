@@ -187,8 +187,10 @@ jQuery(() => {
     $("#inputInput").keypress(e => {
         //console.log(e.which);
         if (e.which == 13) {
-            Potions.addIngredient($("#inputInput").val());
-            console.log($("#inputInput").val());
+            var ingredient = $("#inputInput").val();
+
+            Potions.addIngredient(ingredient);
+            $("#inBowl").append($("<li>" + ingredient + "</li>"));
             $("#inputInput").val("");
             return false;
         }
@@ -199,5 +201,6 @@ jQuery(() => {
         $("#popup")
             .show()
             .html(result);
+        $("#inBowl").html("");
     });
 });

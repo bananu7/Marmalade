@@ -21,6 +21,7 @@ span {
     float: left;
     min-height: 500px;
     color: #3e2914;
+    padding: 10px;
 }
 
 #timer {
@@ -71,6 +72,7 @@ span {
     box-sizing: border-box;
     background-color: #90cc20;
 }
+
 
 #popup {
     display: none;
